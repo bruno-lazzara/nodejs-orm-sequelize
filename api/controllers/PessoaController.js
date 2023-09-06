@@ -72,6 +72,20 @@ class PessoaController {
         }
     }
 
+    static async restauraPessoa(req, res) {
+        try {
+            const { id } = req.params;
+            await database.Pessoas.restore({
+                where: {
+                    id: Number(id)
+                }
+            });
+            return res.status(200).json({ message: 'Pessoa restaurada com sucesso' });
+        } catch (err) {
+            return res.status(500).json(err.message);
+        }
+    }
+
     static async pegaMatriculaPorIdEstudante(req, res) {
         try {
             const { estudanteId, matriculaId } = req.params;
@@ -94,7 +108,7 @@ class PessoaController {
     static async criaMatricula(req, res) {
         try {
             const { estudanteId } = req.params;
-            const matricula = { ...req.body, estudante_id: Number(estudanteId)};
+            const matricula = { ...req.body, estudante_id: Number(estudanteId) };
             matricula.createdAt = new Date();
             matricula.updatedAt = new Date();
 
@@ -133,6 +147,21 @@ class PessoaController {
                 }
             });
             return res.status(200).json({ message: 'Matrícula removida com sucesso' });
+        } catch (err) {
+            return res.status(500).json(err.message);
+        }
+    }
+
+    static async restauraMatricula(req, res) {
+        try {
+            const { estudanteId, matriculaId } = req.params;
+            await database.Matriculas.restore({
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            });
+            return res.status(200).json({ mensagem: 'Matrícula restaurada com sucesso' });
         } catch (err) {
             return res.status(500).json(err.message);
         }
