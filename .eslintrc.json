@@ -18,9 +18,9 @@
             "always"
         ],
         "no-unused-vars": [
-            "error",
+            "warn",
             {
-                "vars": "none",
+                "vars": "all",
                 "args": "after-used",
                 "ignoreRestSiblings": false
             }
