@@ -3,8 +3,8 @@ const PessoaController = require('../controllers/PessoaController');
 
 const router = Router();
 
-router.get('/pessoas', PessoaController.pegaPessoasAtivas);
-router.get('/pessoas/todos', PessoaController.pegaTodasAsPessoas);
+router.get('/pessoas', PessoaController.pegaTodasAsPessoas);
+router.get('/pessoas/ativas', PessoaController.pegaPessoasAtivas);
 router.get('/pessoas/:id', PessoaController.pegaPessoaPorId);
 router.get('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.pegaMatriculaPorIdEstudante);
 router.get('/pessoas/:estudanteId/matriculas', PessoaController.pegaMatriculas);
